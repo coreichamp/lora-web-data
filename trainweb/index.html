@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+        <title>Train Tracking</title>
+    </head>
+    <body>
+        <ceneter>
+            รถไฟขบวนหมายเลข : 
+            <select>
+                <option value="379">379</option>
+            </select>
+            <button>select</button>
+            <h3>
+                <div id="estt">
+                    Estimate time: 6 min.
+                </div>
+                <div id="arrs">
+                    To Station: หัวหมาก
+                </div>
+            </h3>
+        </ceneter>
+        <center>
+            <div id="map" style="width: 75em; height: 35em;"></div>
+        </center>
+        <script src="./js/axios.min.js"></script>
+        <script src="./js/jquery-3.4.1.min.js"></script>
+        <script src="https://maps.google.com/maps/api/js?key=AIzaSyDVCIeLpIM8iWwo2Q82s8Ai-rxW-ZuhvWk&sensor=false" type="text/javascript"></script>
+        <script type="text/javascript">
+            let myTrain;
+            let map;
+            let locations = [
+                // [' ', 20.441672, 99.877489],
+                // ['95.50', 20.384135, 99.887335],
+                // ['97.00', 20.241343, 99.893503],
+                // ['100.75', 20.275353, 100.001988],
+                // ['102.00', 20.416558, 99.885464],
+                // ['105.50', 20.185606, 99.889071],
+                // ['106.00', 20.436159, 99.901871],
+                // ['107.00', 20.440386, 99.894469],
+                // ['เขตแดน', 20.444251, 99.877135]
+            ];
+
+            axios.get("http://161.246.38.104:1818/train/379/station")
+            .then(data => {
+                // console.log(data.data)
+                station_info = data.data
+                station_info.forEach(station => {
+                    locations.push([station.name, station.lat, station.lng, station.number])
+                })
+
+                console.log(locations)
+
+                map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 12,
+                    center: new google.maps.LatLng(13.732420, 100.680747),
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                });
+
+                var infowindow = new google.maps.InfoWindow();
+
+                var marker, i;
+
+                for (i = 0; i < locations.length; i++) {  
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        label: {
+                            color: 'black',
+                            fontWeight: 'bold',
+                            text: locations[i][0],
+                        },
+                        icon: {
+                            labelOrigin: new google.maps.Point(11, 0),
+                            url: locations[i][10],
+                            size: new google.maps.Size(22, 40),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(11, 40),
+                        },
+                        map: map,
+                    });
+
+                    // var cityCircle = new google.maps.Circle({
+                    //     strokeColor: '#FF0000',
+                    //     strokeOpacity: 0.8,
+                    //     strokeWeight: 2,
+                    //     fillColor: '#FF0000',
+                    //     fillOpacity: 0.35,
+                    //     map: map,
+                    //     center: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    //     radius: 75
+                    // });
+
+                    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                        return function() {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, marker);
+                        }
+                    })(marker, i));
+
+                }
+
+                myTrain = new google.maps.Marker({
+                    position: null,
+                    label: {
+                        color: 'black',
+                        fontWeight: 'bold',
+                        text: "379",
+                    },
+                    icon: {
+                        labelOrigin: new google.maps.Point(11, 0),
+                        url: './image/train.png',
+                        // size: new google.maps.Size(22, 40),
+                        scaledSize: new google.maps.Size(40, 40),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(0, 20),
+                    },
+                    map: map,
+                });
+
+                let updateTrainLocation = () => {
+                    axios.get('http://161.246.38.104:1818/train/379/location')
+                    .then(data => {
+                        // console.log("update")
+                        myTrain.setPosition(new google.maps.LatLng(Number(data.data.llat), Number(data.data.llng)))
+                        $("#estt").text(`Estimate time: ${data.data.estimateTime} min.`)
+                        $("#arrs").text(`To Station: ${data.data.toStation}`)
+                //         <div id="estt">
+                //     Estimate time: 0 min.
+                // <div id="arrs">
+                //     To Station: กรุงเทพ
+                    })
+                }
+
+                setInterval(updateTrainLocation, 1000)
+            })
+        </script>
+    </body>
+</html>

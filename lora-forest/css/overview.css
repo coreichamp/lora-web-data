@@ -1,0 +1,7 @@
+.card.node-card {
+    margin-bottom: 1em;
+}
+
+.card.node-card .level {
+    flex-wrap: wrap;
+}

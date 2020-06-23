@@ -1,0 +1,20 @@
+.login-card {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-card h2 {
+    text-align: center;
+}
+
+.login-card img {
+    max-width: 220px;
+    display: block;
+    margin: 0 auto 1em;
+}
+
+.login-card .login-btn {
+    text-align: center;
+    margin-top: 1.5em;
+}

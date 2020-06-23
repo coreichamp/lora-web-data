@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Station</title>
+    <script src="script/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="script/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="script/axios.min.js"></script>
+</head>
+<body>
+    <table id="table_id" class="display">
+        <thead>
+            <tr id="column-name">
+            </tr>
+        </thead>
+        <tbody id="listdata">
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        $(document).ready( function () {
+
+            axios.get("https://lab508.it.kmitl.ac.th:5101/list")
+            .then(res => {
+                res.data.data.data_info.forEach(colName => {
+                    $('#column-name').append(`<th>${colName}</th>`)
+                })
+
+                let maintable = $('#table_id').DataTable();
+
+                res.data.data.station_list.forEach(station_info => {
+                    // maintable.row.add([])
+                    let station = []
+                    res.data.data.data_info.forEach(colName => {
+                        station.push(station_info[colName])
+                    })
+                    maintable.row.add(station).draw(false)
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        } );
+    </script>
+</body>
+</html>

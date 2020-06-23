@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Data Chart</title>
+    <link rel="stylesheet" type="text/css" href="css/chart.css" />
+  </head>
+  <body>
+    <div>
+      <center>
+        <h1>Realtime data from balloon</h1>
+        <!-- <h4 id="gps_text">GPS: 0000.0000,N 00000.0000,E</h4> -->
+      </center>
+    </div>
+    <div id="data">
+      <center>
+        <div class="chart" id="style_temp">
+          <canvas id="chart_temp"></canvas>
+        </div>
+        <!-- <div class="chart" id="style_air_pressure"> -->
+        <!-- <canvas id="chart_air_pressure"></canvas> -->
+        <!-- Calibrate : <input type="number" id="calibrate_air" /> -->
+        <!-- </div> -->
+        <div class="chart" id="style_humidity">
+          <canvas id="chart_humidity"></canvas>
+        </div>
+      </center>
+    </div>
+    <script src="js/nmea.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/loaddata.js"></script>
+    <script src="js/updatedata.js"></script>
+  </body>
+</html>

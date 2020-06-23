@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Node 1</title>
+    <link rel="stylesheet" href="css/bulma.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/node-single.css" />
+  </head>
+  <body style="background: url('img/forest.jpg') center bottom no-repeat;">
+    <!-- APP NAVBAR -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a
+            role="button"
+            class="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <a
+              href="#"
+              class="navbar-item"
+              onclick="window.location.replace('overview.html');"
+              >Overview</a
+            >
+            <div class="navbar-item">
+              <div class="buttons are-small">
+                <a
+                  href="#"
+                  class="button is-outlined"
+                  onclick="window.location.replace('index.html');"
+                  >Log out</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          Node 1
+        </h1>
+        <!-- <h2 class="subtitle">หน้าประตูตะวันออก</h2> -->
+        <!-- <div class="buttons">
+          <button class="button is-link is-small is-outlined">Setting</button>
+        </div> -->
+        <div class="card">
+          <div class="card-content">
+            <nav class="level">
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Temperature</p>
+                  <p class="title">0C</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Moisture</p>
+                  <p class="title">0%</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Lidar</p>
+                  <p class="title">0m</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Ultrasonic</p>
+                  <p class="title">0m</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Motion</p>
+                  <p class="title">OFF</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">PIR</p>
+                  <p class="title">OFF</p>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <div class="camera-preview">
+          <figure class="image is-16by9">
+            <img src="img/640x360.png" alt="preview" />
+          </figure>
+          <div class="buttons is-centered">
+            <button class="button is-primary" onclick="capimg()">
+              Capture
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SETTING MODAL -->
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Settings</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <form>
+            <div class="field">
+              <label class="label" for="node-name">Name</label>
+              <div class="control">
+                <input
+                  class="input"
+                  id="node-name"
+                  type="text"
+                  value="Node 1"
+                  required
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label" for="node-description">Description</label>
+              <div class="control">
+                <input
+                  class="input"
+                  id="node-description"
+                  type="text"
+                  value="หน้าประตูตะวันออก"
+                  required
+                />
+              </div>
+            </div>
+          </form>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success">Save</button>
+        </footer>
+      </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/mqttws31.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      sing();
+    </script>
+  </body>
+</html>

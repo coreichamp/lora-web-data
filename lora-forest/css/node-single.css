@@ -1,0 +1,8 @@
+.camera-preview {
+    max-width: 640px;
+    margin: 2em auto
+}
+
+.camera-preview .buttons {
+    margin-top: 1em;
+}

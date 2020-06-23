@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+    <title>Google Maps Multiple Markers</title> 
+    <script src="../mean.js"></script> 
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyDVCIeLpIM8iWwo2Q82s8Ai-rxW-ZuhvWk&sensor=false&libraries=geometry" type="text/javascript"></script>
+</head> 
+<body>
+    <center>
+        <div id="map" style="width: 1000px; height: 600px;"></div>
+    </center>  
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        let locations = [
+            ['Self', 17.396028, 104.791611, '../marker_orange@.png'],
+            ['90.25', 17.383392, 104.756095, '../marker_red.png'],
+            ['92.00', 17.391945, 104.790485, '../marker_red.png'],
+            ['92.50', 17.402546, 104.785803, '../marker_red.png'],
+            ['93.50', 17.388007, 104.787972, '../marker_red.png'],
+            // ['95.50', 0, 0, '../marker_red.png'],
+            ['97.50', 17.425628, 104.767272, '../marker_red.png'],
+            ['99.50', 17.375971, 104.770097, '../marker_red.png'],
+            ['ชายแดน', 17.397527, 104.798217]
+        ];
+
+            let map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 7,
+                center: new google.maps.LatLng(14, 100.5),
+                mapTypeId: google.maps.MapTypeId.SATELLITE
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {  
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    label: {
+                        color: 'white',
+                        fontWeight: 'bold',
+                        text: locations[i][0],
+                    },
+                    icon: {
+                        labelOrigin: new google.maps.Point(11, 0),
+                        url: locations[i][3],
+                        size: new google.maps.Size(22, 40),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(11, 40),
+                    },
+                    map: map,
+                });
+                var measureTool = new MeasureTool(map, {
+                    contextMenu: false,
+                    showSegmentLength: true,
+                    tooltip: false,
+                    unit: MeasureTool.UnitTypeId.METRIC // metric, imperial, or nautical
+                });
+                if ( locations[i][0] != 'Self' ){
+                    measureTool.start([{lat: locations[0][1], lng: locations[0][2]}, {lat: locations[i][1], lng: locations[i][2]}])
+                }
+
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                    }
+                })(marker, i));
+
+            }
+  </script>
+</body>
+</html>

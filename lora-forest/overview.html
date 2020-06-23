@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Overview</title>
+    <link rel="stylesheet" href="css/bulma.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/overview.css" />
+  </head>
+  <body style="background: url('img/forest.jpg') center bottom no-repeat;">
+    <!-- APP NAVBAR -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a
+            role="button"
+            class="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <a href="#" class="navbar-item">Overview</a>
+            <div class="navbar-item">
+              <div class="buttons are-small">
+                <a
+                  href="#"
+                  class="button is-outlined"
+                  onclick="window.location.replace('index.html');"
+                  >Log out</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Overview</h1>
+
+        <!-- NODE-CARD COMPONENT -->
+        <!-- <div class="card node-card">
+          <div
+            class="card-header"
+            onclick="window.location.replace('node-single.html?node=1')"
+          >
+            <div class="card-header-title">Node 1</div>
+          </div>
+
+          <div class="card-content">
+            <nav class="level is-mobile">
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Temperature</p>
+                  <p class="title">0C</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Moisture</p>
+                  <p class="title">0%</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Lidar</p>
+                  <p class="title">0m</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Ultrasonic</p>
+                  <p class="title">0m</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Vibration</p>
+                  <p class="title">OFF</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">PIR</p>
+                  <p class="title">OFF</p>
+                </div>
+              </div>
+            </nav>
+          </div> -->
+        </div>
+      </div>
+    </section>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/mqttws31.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      over();
+    </script>
+  </body>
+</html>

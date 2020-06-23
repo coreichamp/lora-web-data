@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script
+      data-require="jquery@*"
+      data-semver="3.1.1"
+      src="js/jquery-3.3.1.js"
+    ></script>
+    <script
+      data-require="datatables@*"
+      data-semver="1.10.12"
+      src="js/jquery.dataTables.min.js"
+    ></script>
+    <script src="js/dataTables.rowReorder.js"></script>
+    <script src="js/axios.min.js"></script>
+    <link
+      data-require="datatables@*"
+      data-semver="1.10.12"
+      rel="stylesheet"
+      href="css/jquery.dataTables.min.css"
+    />
+    <link rel="stylesheet" href="css/rowReorder.dataTables.min.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" /> -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      div.addRow {
+        line-height: 45px;
+        background-color: #fff;
+        padding-left: 10px;
+        border-bottom: 1px solid;
+        border-top: 1px solid #e5e5e5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="employee_area">
+      <div>
+        <center><h1>Employee</h1></center>
+      </div>
+      <table id="employee" class="display" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>ชื่อ</th>
+            <th>นามสกุล</th>
+            <th>Card ID</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+      </table>
+
+      <table id="employeenewRow" style="display:none">
+        <tbody>
+          <tr>
+            <td>
+              <!-- <select id="selectbasic" name="selectbasic" class="form-control">
+                <option value="1">option 1</option>
+                <option value="2">option 2</option>
+                <option value="2">option 3</option>
+              </select> -->
+            </td>
+            <td>FirstName</td>
+            <td>LastName</td>
+            <td>Card ID</td>
+            <td>
+              <i class="fa fa-pencil-square" aria-hidden="true"></i>
+              <i class="fa fa-minus-square" aria-hidden="true"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="train_area">
+      <div>
+        <center><h1>Train</h1></center>
+      </div>
+      <table id="train" class="display" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Card ID</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+      </table>
+
+      <table id="trainnewRow" style="display:none">
+        <tbody>
+          <tr>
+            <td>
+              <!-- <select id="selectbasic" name="selectbasic" class="form-control">
+                  <option value="1">option 1</option>
+                  <option value="2">option 2</option>
+                  <option value="2">option 3</option>
+                </select> -->
+            </td>
+            <td>Card ID</td>
+            <td>
+              <i class="fa fa-pencil-square" aria-hidden="true"></i>
+              <i class="fa fa-minus-square" aria-hidden="true"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="js/employee_control.js"></script>
+    <script src="js/train_control.js"></script>
+  </body>
+</html>

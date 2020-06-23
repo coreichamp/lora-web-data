@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+  <title>Google Maps Multiple Markers</title> 
+  <script src="https://maps.google.com/maps/api/js?key=AIzaSyDVCIeLpIM8iWwo2Q82s8Ai-rxW-ZuhvWk&sensor=false" 
+          type="text/javascript"></script>
+</head> 
+<body>
+  <center>
+    <div id="map" style="width: 1000px; height: 600px;"></div>
+  </center>  
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript">
+        let locations = [
+        //   ['Bondi Beach', -33.890542, 151.274856, 4],
+        //   ['Coogee Beach', -33.923036, 151.259052, 5],
+        //   ['Cronulla Beach', -34.028249, 151.157507, 3],
+        //   ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+        //   ['Maroubra Beach', -33.950198, 151.259302, 1]
+        ];
+        axios.get('https://lab508.it.kmitl.ac.th:7000/location')
+        .then(function (response) {
+            response.data.data.forEach(element => {
+                if ( element.name === "self" ) {
+                    locations.push([element.name, Number(element.lat), Number(element.lng), 'https://maps.google.com/mapfiles/kml/paddle/grn-blank.png'])
+                } else {
+                    locations.push([element.name, Number(element.lat), Number(element.lng), 'https://maps.google.com/mapfiles/kml/paddle/red-blank.png'])
+                }
+            });
+
+            let map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 7,
+                center: new google.maps.LatLng(14, 100.5),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {  
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    icon: locations[i][3],
+                    map: map,
+                });
+
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                    }
+                })(marker, i));
+
+            }
+        })
+        .catch(function (error) {
+            // alert("บันทึกตำแหน่งไม่สำเร็จ");
+            console.log(error)
+        });
+  </script>
+</body>
+</html>

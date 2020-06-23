@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <title>Vi LoRa [Display]</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="semantic/dist/semantic.min.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css"></script>
+    <link rel="stylesheet" type="text/css" href="css/text.css" />
+    <script src="js/mqttws31.js"></script>
+    <script src="js/highstock.js"></script>
+  </head>
+
+  <body style="background-color: rgb(248, 249, 252);">
+    <div class="ui stackable grid" style="height: inherit; margin: 0;">
+      <!-- JSON Format -->
+      <div
+        class="four wide column"
+        style="background-color: rgb(247, 196, 129); margin-bottom: 2rem;"
+      >
+        <h1 class="ui header center aligned" style="color: white;">
+          JSON Format
+        </h1>
+        <pre
+          class="prettyprint"
+          style="overflow: scroll;"
+        ><code id="json-data"></code></pre>
+      </div>
+
+      <!-- Widget -->
+      <div class="twelve wide column">
+        <h1 class="ui header center aligned">
+          Widget
+        </h1>
+        <a href="config.html" style="color: inherit;">
+          <i
+            class="large cogs link icon"
+            style="position: absolute; top: 15px; right: 15px;"
+          ></i>
+        </a>
+        <div style="text-align: center;">
+          <button class="positive ui button" onclick="showModal()">
+            Add Widget
+          </button>
+        </div>
+        <!-- <h2 class="ui header left aligned">Display</h2> -->
+        <h2 class="ui header left aligned"></h2>
+        <div class="ui contrainer" id="widget-display"></div>
+      </div>
+
+      <!-- Modal semantic UI -->
+      <div class="ui modal apply-modal">
+        <div class="header">
+          Add Widget
+        </div>
+        <div class="content">
+          <div class="widget-content">
+            <h2 class="ui header">Name</h2>
+            <div class="ui input fluid">
+              <input type="text" id="addwidget-name" placeholder="Name..." />
+            </div>
+          </div>
+          <div class="widget-content">
+            <h2 class="ui header">Data</h2>
+            <select class="ui dropdown" id="addwidget-data">
+              <!-- <option value="">Gender</option>
+              <option value="1">Male</option>
+              <option value="0">Female</option> -->
+            </select>
+          </div>
+          <div class="widget-content">
+            <h2 class="ui header">Type</h2>
+            <select class="ui dropdown" id="addwidget-type">
+              <option value="text">Text</option>
+              <option value="graph">Graph</option>
+            </select>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="ui cancel button" id="modal-action-cancel">Cancel</div>
+          <div
+            class="ui disabled primary button"
+            onclick="okWidget()"
+            id="modal-action-ok"
+          >
+            OK
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <script src="js/jsonshow.js"></script> -->
+    <script src="js/vi-main.js"></script>
+    <script src="js/widgetControl.js"></script>
+    <!-- <script src="js/run_prettify.js"></script> -->
+  </body>
+</html>

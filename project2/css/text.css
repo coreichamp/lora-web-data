@@ -1,0 +1,135 @@
+@font-face {
+  font-family: "PrintAble4U";
+  src: url("fonts/PrintAble4U Bold Italic ver 1.00.ttf") format("truetype"),
+    url("fonts/PrintAble4U Bold ver 1.00.ttf") format("truetype"),
+    url("fonts/PrintAble4U Italic ver 1.00.ttf") format("truetype"),
+    url("fonts/PrintAble4U Regular ver 1.00.ttf") format("truetype");
+}
+
+.ui.header.center.aligned {
+  font-family: PrintAble4U;
+  font-size: 42px;
+}
+
+.ui.header.left.aligned {
+  font-family: PrintAble4U;
+}
+
+.ui.header {
+  font-family: PrintAble4U;
+}
+
+pre {
+  font-family: PrintAble4U;
+}
+
+.widget-content {
+  padding-bottom: 1em;
+}
+
+.widget-display {
+  margin-bottom: 1em;
+  -webkit-box-shadow: 10px 15px 35px -16px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 15px 35px -16px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 15px 35px -16px rgba(0, 0, 0, 0.75);
+}
+
+.str {
+  color: #ec7600;
+}
+.kwd {
+  color: #93c763;
+}
+.com {
+  color: #66747b;
+}
+.typ {
+  color: #678cb1;
+}
+.lit {
+  color: #facd22;
+}
+.pun {
+  color: #f1f2f3;
+}
+.pln {
+  color: #f1f2f3;
+}
+.tag {
+  color: #8ac763;
+}
+.atn {
+  color: #e0e2e4;
+}
+.atv {
+  color: #ec7600;
+}
+.dec {
+  color: purple;
+}
+pre.prettyprint {
+  border: 0px solid #888;
+}
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.prettyprint {
+  background: #000;
+}
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  color: #555;
+  list-style-type: decimal;
+}
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 {
+  background: #111;
+}
+@media print {
+  .str {
+    color: #060;
+  }
+  .kwd {
+    color: #006;
+    font-weight: bold;
+  }
+  .com {
+    color: #600;
+    font-style: italic;
+  }
+  .typ {
+    color: #404;
+    font-weight: bold;
+  }
+  .lit {
+    color: #044;
+  }
+  .pun {
+    color: #440;
+  }
+  .pln {
+    color: #000;
+  }
+  .tag {
+    color: #006;
+    font-weight: bold;
+  }
+  .atn {
+    color: #404;
+  }
+  .atv {
+    color: #060;
+  }
+}

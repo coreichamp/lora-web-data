@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+
+    <p>Your Location:</p>
+    <p id="demo"></p>
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+    var x = document.getElementById("demo");
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else { 
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude + 
+        "<br>Longitude: " + position.coords.longitude;
+        console.log(position.coords.latitude)
+        console.log(position.coords.longitude)
+        //axios.post('https://lab508.it.kmitl.ac.th:7000/location', {
+        //    lat: position.coords.latitude,
+        //    lng: position.coords.longitude,
+        //    name: 'self'
+        //})
+        axios.post('https://lab508.it.kmitl.ac.th:8500/checklocation', {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+    let flag = 0;
+
+    function start(){
+        flag = 1;
+    }
+
+    function stop(){
+        flag = 0;
+    }
+
+    setInterval(function(){
+        if( flag === 1){
+            getLocation()
+        }
+    }, 5000);
+
+</script>
+
+</body>
+</html>

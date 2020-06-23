@@ -1,0 +1,10 @@
+#data{
+    margin: auto;
+}
+
+.chart{
+    display: inline-block;
+    width: 35em;
+    height: 8em;
+    margin: 1em 1em 10em 1em;
+}

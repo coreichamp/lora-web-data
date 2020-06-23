@@ -1,0 +1,145 @@
+<html>
+  <head>
+    <title>Vi LoRa [Config User]</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="semantic/dist/semantic.min.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <script src="https://semantic-ui.com/javascript/library/less.min.js"></script>
+    <style>
+      .ui.input {
+        margin: 1rem;
+      }
+      .positive.ui.button {
+        margin: 1rem;
+      }
+      label {
+        width: 25%;
+      }
+      input {
+        width: 70%;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="css/topper.css" />
+  </head>
+
+  <body>
+    <div class="ui grid" style="height: 100%;">
+      <div
+        class="four wide column ui vertical inverted sidebar menu left overlay visible"
+        id="toc"
+      >
+        <div class="item">
+          <a class="ui logo icon image" href="">
+            <img
+              src="images/lorawan.png"
+              BackColor="Transparent"
+              width="40em"
+            />
+          </a>
+          <a href="#"><b>Config User</b></a>
+        </div>
+        <a
+          class="item"
+          href="#"
+          onclick="$('#config-body').show();$('#password-body').hide();"
+        >
+          <b>Config broker</b>
+        </a>
+        <a
+          class="item"
+          href="#"
+          onclick="$('#config-body').hide();$('#password-body').show();"
+        >
+          <b>Change password</b>
+        </a>
+        <a class="item" href="display.html">
+          <b style="color: greenyellow;">Back to Display</b>
+        </a>
+        <a class="item" href="index.html" onclick="logout()">
+          <b style="color: red;">Logout</b>
+        </a>
+      </div>
+      <div class="twelve wide column" style="padding-top: 2rem;">
+        <div id="config-body" style="display: block;">
+          <form onsubmit="setConfig(); return false">
+            <div class="ui right labeled input" style="display: block;">
+              <label for="ip" class="ui label">IP</label>
+              <input type="text" id="ip" placeholder="IP server" required />
+            </div>
+            <div class="ui right labeled input" style="display: block;">
+              <label for="port" class="ui label">Port</label>
+              <input type="text" id="port" placeholder="Port server" required />
+            </div>
+            <div class="ui right labeled input" style="display: block;">
+              <label for="port" class="ui label">Application ID</label>
+              <input
+                type="text"
+                id="appId"
+                placeholder="Application ID"
+                required
+              />
+            </div>
+            <div class="ui right labeled input" style="display: block;">
+              <label for="port" class="ui label">Device ID</label>
+              <input type="text" id="devId" placeholder="Device ID" required />
+            </div>
+            <button class="positive ui button">
+              Save
+            </button>
+          </form>
+        </div>
+        <div id="password-body">
+          <form onsubmit="setNewPassword(); return false">
+            <div class="ui right labeled input" style="display: block;">
+              <label for="amount" class="ui label">Old Password</label>
+              <input
+                type="password"
+                id="oldPassword"
+                placeholder="Old password"
+                required
+              />
+            </div>
+            <div class="ui right labeled input" style="display: block;">
+              <label for="amount" class="ui label">New Password</label>
+              <input
+                type="password"
+                id="newPassword"
+                placeholder="New password"
+                required
+              />
+            </div>
+            <div class="ui right labeled input" style="display: block;">
+              <label for="amount" class="ui label">Re-new Password</label>
+              <input
+                type="password"
+                id="re-newPassword"
+                placeholder="re-newPassword"
+                required
+              />
+            </div>
+            <button class="positive ui button">
+              Save
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      $("#password-body").hide();
+    </script>
+    <script src="js/vi-main.js"></script>
+    <script>
+      $(window).on("load", function () {
+        getConfig();
+      });
+    </script>
+  </body>
+</html>
